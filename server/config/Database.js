@@ -1,6 +1,6 @@
 import { Sequelize } from "sequelize";
 
-const db = new Sequelize("crud-express", "root", "", {
+const db = new Sequelize("crud_express", "root", "", {
     host: "localhost",
     dialect: "mysql",
 });
