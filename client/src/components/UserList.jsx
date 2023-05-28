@@ -5,6 +5,10 @@ import { Link } from "react-router-dom";
 export default function UserList() {
     const [users, setUsers] = useState([]);
 
+    useEffect(() => {
+        getUsers();
+    }, []);
+
     const getUsers = async () => {
         const response = await axios.get(
             import.meta.env.VITE_SERVER + "/users"
@@ -12,9 +16,14 @@ export default function UserList() {
         setUsers(response.data);
     };
 
-    useEffect(() => {
-        getUsers();
-    }, []);
+    const deleteUser = async (id) => {
+        try {
+            await axios.delete(import.meta.env.VITE_SERVER + "/users/" + id);
+            getUsers();
+        } catch (error) {
+            console.log(error);
+        }
+    };
 
     return (
         <section>
@@ -41,10 +50,18 @@ export default function UserList() {
                                     <td>{user.email}</td>
                                     <td>{user.gender}</td>
                                     <td>
-                                        <button className="button is-small mr-2 is-info">
-                                            Edit
-                                        </button>
-                                        <button className="button is-small  is-danger">
+                                        <Link to={"edit/" + user.id}>
+                                            <button className="button is-small mr-2 is-info">
+                                                Edit
+                                            </button>
+                                        </Link>
+                                        <button
+                                            onClick={() => {
+                                                if (confirm("Are you sure?"))
+                                                    deleteUser(user.id);
+                                            }}
+                                            className="button is-small  is-danger"
+                                        >
                                             Delete
                                         </button>
                                     </td>
