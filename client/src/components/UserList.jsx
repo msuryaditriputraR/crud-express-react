@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 export default function UserList() {
     const [users, setUsers] = useState([]);
@@ -19,6 +20,9 @@ export default function UserList() {
         <section>
             <div className="columns mt-5 is-centered">
                 <div className="column is-half">
+                    <Link to="add">
+                        <button className="button is-success mb-4">ADD</button>
+                    </Link>
                     <table className="table is-striped is-fullwidth">
                         <thead>
                             <tr>
