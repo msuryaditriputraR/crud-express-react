@@ -23,13 +23,13 @@ Content-Type: application/json
 ###
 
 # UPDATE DATA
-PATCH  http://localhost:5000/users/1
+PATCH  http://localhost:5000/users/2
 Content-Type: application/json
 
 {
   "name": "Dandi",
   "email": "dandi@gmail.com",
-  "gender": "male"
+  "gender": "Male"
 }
 
 ###
